@@ -9,6 +9,7 @@ export default defineConfig([
     extends: ["airbnb-base", "js/recommended"],
     rules: {
       "no-console": "off",
+      "import/first": "off",
       "class-methods-use-this": "off",
     },
   },
