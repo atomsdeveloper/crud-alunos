@@ -1,11 +1,28 @@
 import Aluno from "../models/Aluno";
-
+import Photo from "../models/Photo";
 class StudentController {
   // List all students
   // This method handles the retrieval of all students
   async index(req, res) {
     try {
-      const students = await Aluno.findAll({});
+      const students = await Aluno.findAll({
+        // Order the students by ID in descending order
+        // This means the most recently created students will be listed first
+        order: [
+          ["id", "DESC"],
+          // Order the associated photos by ID in descending order
+          // This means the most recently created photos will be listed first
+          [Photo, "id", "DESC"],
+        ],
+        // Include associated photos
+        // This allows us to get the photos associated with each student
+        include: [
+          {
+            model: Photo,
+            attributes: ["filename", "url"],
+          },
+        ],
+      });
 
       // Check if the students were found
       if (!students) {
@@ -22,6 +39,7 @@ class StudentController {
         data: students,
       });
     } catch (error) {
+      console.log(error);
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
@@ -76,7 +94,24 @@ class StudentController {
       const { id } = req.params;
 
       // Find the student by ID
-      const student = await Aluno.findByPk(id);
+      const student = await Aluno.findByPk(id, {
+        // Order the students by ID in descending order
+        // This means the most recently created students will be listed first
+        order: [
+          ["id", "DESC"],
+          // Order the associated photos by ID in descending order
+          // This means the most recently created photos will be listed first
+          [Photo, "id", "DESC"],
+        ],
+        // Include associated photos
+        // This allows us to get the photos associated with each student
+        include: [
+          {
+            model: Photo,
+            attributes: ["filename", "url"],
+          },
+        ],
+      });
 
       // Check if the student was found
       if (!student) {
