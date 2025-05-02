@@ -46,6 +46,9 @@ class TokenController {
         message: "Token gerado com sucesso.",
         data: {
           token: token,
+          name: user.name,
+          email: user.email,
+          id: user.id,
         },
       });
     } catch (error) {

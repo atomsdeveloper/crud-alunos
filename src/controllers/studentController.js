@@ -39,7 +39,6 @@ class StudentController {
         data: students,
       });
     } catch (error) {
-      console.log(error);
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
