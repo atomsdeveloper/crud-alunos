@@ -1,25 +1,39 @@
 import multer from "multer";
 import { extname, resolve } from "path";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const localStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, resolve(__dirname, "..", "..", "uploads", "images"));
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname.replace(/\s+/g, "-")}`);
+  },
+});
+
+const cloudinaryStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "uploads",
+    allowed_formats: ["jpg", "png", "jpeg"],
+    transformation: [{ width: 800, height: 800, crop: "limit" }],
+  },
+});
+
+const storage =
+  process.env.STORAGE_DRIVER === "cloudinary"
+    ? cloudinaryStorage
+    : localStorage;
 
 export default {
-  // The storage option is used to specify where the uploaded files will be stored
-  // The destination option is used to specify the directory where the files will be stored
-  storage: multer.diskStorage({
-    destination: (req, file, cb) => {
-      // The cb function is used to specify the directory where the files will be stored
-      // The resolve function is used to create an absolute path to the directory
-      cb(null, resolve(__dirname, "..", "..", "uploads"));
-    },
-    filename: (req, file, cb) => {
-      cb(
-        null,
-        // Get the current date and time in milliseconds
-        // by combining the current date and time with the original file name
-        // and the file extension
-        `${Date.now()}-${file.originalname}${extname(file.originalname)}`
-      );
-    },
-  }),
+  storage,
   limits: {
     fileSize: 2 * 1024 * 1024,
   },
@@ -28,9 +42,7 @@ export default {
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error("Invalid file type"));
+      cb(new Error("Tipo de arquivo inválido"));
     }
   },
-  dest: "./uploads",
-  // dest: path.resolve(__dirname, "..", "..", "uploads")
 };
