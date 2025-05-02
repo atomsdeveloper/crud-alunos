@@ -1,4 +1,5 @@
 import { Model, DataTypes } from "sequelize";
+import urlConfig from "../config/urlConfig";
 
 // Model for the "alunos" table
 // This model represents the structure of the "alunos" table in the database
@@ -25,6 +26,22 @@ export default class Photo extends Model {
             notEmpty: {
               msg: "Originalname não pode ser vazio",
             },
+          },
+        },
+        student_id: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          references: {
+            model: "alunos",
+            key: "id",
+          },
+        },
+        url: {
+          type: DataTypes.VIRTUAL,
+          get() {
+            const filename = this.getDataValue("filename");
+            const isCloudinary = filename.startsWith("http");
+            return isCloudinary ? filename : `${urlConfig.baseURL}/${filename}`;
           },
         },
       },
