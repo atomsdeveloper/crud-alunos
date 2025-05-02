@@ -1,3 +1,5 @@
+import Photo from "../models/Photo";
+
 class PhotoController {
   async store(req, res) {
     try {
@@ -32,6 +34,16 @@ class PhotoController {
           message: "O arquivo enviado não é uma imagem válida.",
         });
       }
+
+      const { filename, originalname } = req.file;
+      const { student_id } = req.body;
+      // Create a new photo record in the database
+      await Photo.create({
+        filename,
+        originalname,
+        student_id,
+      });
+
       // If all checks pass, return success response
       return res.json({
         success: true,
