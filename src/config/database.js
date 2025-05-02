@@ -1,7 +1,7 @@
 require("dotenv").config(); // Load environment variables from .env file
 
 module.exports = {
-  dialect: process.env.DATABASE_DIALECT,
+  dialect: "mariadb", // Use MariaDB as the database dialect
   database: process.env.DATABASE_NAME,
   host: process.env.DATABASE_HOST,
   username: process.env.DATABASE_USER,
