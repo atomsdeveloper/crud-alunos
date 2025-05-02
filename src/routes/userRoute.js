@@ -12,7 +12,7 @@ import UserController from "../controllers/userController.js";
 router.get("/", UserController.index);
 // router.get("/:id", UserController.show);
 
-router.post("/", UserController.store);
+router.post("/", loginRequired, UserController.store);
 router.put("/", loginRequired, UserController.update);
 router.delete("/", loginRequired, UserController.delete);
 
