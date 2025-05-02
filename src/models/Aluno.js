@@ -114,4 +114,12 @@ export default class Aluno extends Model {
     );
     return this;
   }
+
+  static associate(models) {
+    // Define a one-to-many relationship with the Photo model
+    // This means that a student can have many photos
+    this.hasMany(models.Photo, {
+      foreignKey: "student_id",
+    });
+  }
 }
