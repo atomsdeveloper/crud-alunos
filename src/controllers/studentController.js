@@ -12,16 +12,16 @@ class StudentController {
           ["id", "DESC"],
           // Order the associated photos by ID in descending order
           // This means the most recently created photos will be listed first
-          [Photo, "id", "DESC"],
+          // [Photo, "id", "DESC"],
         ],
         // Include associated photos
         // This allows us to get the photos associated with each student
-        include: [
-          {
-            model: Photo,
-            attributes: ["filename", "url"],
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Photo,
+        //     attributes: ["filename", "url"],
+        //   },
+        // ],
       });
 
       // Check if the students were found
