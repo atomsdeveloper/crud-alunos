@@ -1,65 +1,79 @@
+// Models
 import Photo from "../models/Photo";
+import Aluno from "../models/Aluno";
+
+// Multer
+import multer from "multer";
+import multerConfig from "../config/multer";
+
+// Multer middleware to handle file uploads
+// The multerConfig is passed as an argument to the multer function
+// The single method is used to specify that we are expecting a single file upload
+const upload = multer(multerConfig).single("file");
 
 class PhotoController {
   async store(req, res) {
-    try {
-      // Check if the file is present in the request
-      if (!req.file) {
+    upload(req, res, async (err) => {
+      if (err) {
         return res.status(400).json({
           success: false,
-          message: "Nenhum arquivo enviado.",
-        });
-      }
-      // Check if the file is an image
-      if (!req.file.mimetype.startsWith("image/")) {
-        return res.status(400).json({
-          success: false,
-          message: "O arquivo enviado não é uma imagem.",
-        });
-      }
-      // Check if the file size is less than 2MB
-      if (req.file.size > 2 * 1024 * 1024) {
-        return res.status(400).json({
-          success: false,
-          message: "O arquivo enviado é maior que 2MB.",
-        });
-      }
-      // Check if the file name is valid
-      const fileName = req.file.originalname;
-      const fileExtension = fileName.split(".").pop();
-      const allowedExtensions = ["jpg", "jpeg", "png"];
-      if (!allowedExtensions.includes(fileExtension)) {
-        return res.status(400).json({
-          success: false,
-          message: "O arquivo enviado não é uma imagem válida.",
+          message: err.message || "Erro ao processar o arquivo.",
         });
       }
 
-      const { filename, originalname } = req.file;
-      const { student_id } = req.body;
-      // Create a new photo record in the database
-      await Photo.create({
-        filename,
-        originalname,
-        student_id,
-      });
+      console.log(req.body);
 
-      // If all checks pass, return success response
-      return res.json({
-        success: true,
-        message: "Rota acessada com sucesso.",
-        file: req.file,
-      });
-    } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: "Erro ao acessar a rota de upload.",
-        error: error.errors.map((err) => err.message),
-      });
-    }
+      try {
+        const { student_id } = req.body;
+
+        // Check if the student_id is provided in the request body
+        if (!student_id) {
+          return res.status(400).json({
+            success: false,
+            message: "O ID do aluno não foi fornecido.",
+          });
+        }
+
+        // Check if the student_id exists in table "alunos"
+        const studentExists = await Aluno.findOne({
+          where: { id: student_id },
+        });
+
+        if (!studentExists) {
+          return res.status(400).json({
+            success: false,
+            message: "O aluno não existe.",
+          });
+        }
+
+        const isCloudinary = process.env.STORAGE_DRIVER === "cloudinary";
+
+        // Get the filename and originalname from the request file
+        const { filename, originalname, path } = req.file;
+
+        const photo = await Photo.create({
+          filename: isCloudinary ? filename : path,
+          originalname,
+          student_id,
+        });
+
+        // Return a success response
+        return res.json({
+          success: true,
+          message: "Rota acessada com sucesso.",
+          file: photo,
+        });
+      } catch (error) {
+        return res.status(500).json({
+          success: false,
+          message: "Erro ao acessar a rota de upload.",
+          error: error.errors
+            ? error.errors.map((err) => err.message)
+            : error.message,
+        });
+      }
+    });
   }
 }
 
-// Exporting the instance of PhotoController
-// This allows us to use the same instance across the application
 export default new PhotoController();
