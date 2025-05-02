@@ -20,7 +20,7 @@ import multerConfig from "../config/multer.js";
 const upload = multer(multerConfig).single("file");
 
 // Route
-router.post("/", loginRequired, upload, PhotoController.store);
+router.post("/", upload, PhotoController.store);
 
 export default router;
 
