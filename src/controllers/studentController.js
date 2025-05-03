@@ -4,6 +4,7 @@ class StudentController {
   // List all students
   // This method handles the retrieval of all students
   async index(req, res) {
+    console.log("🔍 Rota /students acessada");
     try {
       const students = await Aluno.findAll({
         // Order the students by ID in descending order
@@ -12,16 +13,16 @@ class StudentController {
           ["id", "DESC"],
           // Order the associated photos by ID in descending order
           // This means the most recently created photos will be listed first
-          // [Photo, "id", "DESC"],
+          [Photo, "id", "DESC"],
         ],
         // Include associated photos
         // This allows us to get the photos associated with each student
-        // include: [
-        //   {
-        //     model: Photo,
-        //     attributes: ["filename", "url"],
-        //   },
-        // ],
+        include: [
+          {
+            model: Photo,
+            attributes: ["filename", "url"],
+          },
+        ],
       });
 
       // Check if the students were found
