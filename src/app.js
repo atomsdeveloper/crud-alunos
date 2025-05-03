@@ -32,7 +32,11 @@ class App {
         contentSecurityPolicy: {
           directives: {
             defaultSrc: ["'self'"],
-            connectSrc: ["*", "ws:", "http:", "https:"], // Allow all connections
+            connectSrc: [
+              "'self'",
+              "http://localhost:5173",
+              "ws://localhost:5173",
+            ],
           },
         },
       })
