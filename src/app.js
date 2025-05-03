@@ -36,10 +36,11 @@ const helmetOptions = {
       connectSrc: [
         "'self'",
         "http://localhost:5173",
-        "https://localhost:5173",
-        "ws://localhost:5173",
-        "wss://localhost:5173",
+        "https://seu-dominio.vercel.app",
       ],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:"],
     },
   },
 };
