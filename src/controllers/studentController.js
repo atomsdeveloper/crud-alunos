@@ -4,7 +4,6 @@ class StudentController {
   // List all students
   // This method handles the retrieval of all students
   async index(req, res) {
-    console.log("🔍 Rota /students acessada");
     try {
       const students = await Aluno.findAll({
         // Order the students by ID in descending order
