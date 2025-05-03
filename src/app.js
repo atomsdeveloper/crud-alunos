@@ -27,22 +27,22 @@ class App {
 
   middleware() {
     this.app.use(cors());
-    this.app.use(
-      helmet({
-        contentSecurityPolicy: {
-          directives: {
-            defaultSrc: ["'self'"],
-            connectSrc: [
-              "'self'",
-              "http://localhost:5173",
-              "https://localhost:5173",
-              "ws://localhost:5173",
-              "wss://localhost:5173",
-            ],
-          },
-        },
-      })
-    );
+    // this.app.use(
+    //   helmet({
+    //     contentSecurityPolicy: {
+    //       directives: {
+    //         defaultSrc: ["'self'"],
+    //         connectSrc: [
+    //           "'self'",
+    //           "http://localhost:5173",
+    //           "https://localhost:5173",
+    //           "ws://localhost:5173",
+    //           "wss://localhost:5173",
+    //         ],
+    //       },
+    //     },
+    //   })
+    // );
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.static(resolve(__dirname, "uploads")));
