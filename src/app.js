@@ -35,7 +35,9 @@ class App {
             connectSrc: [
               "'self'",
               "http://localhost:5173",
+              "https://localhost:5173",
               "ws://localhost:5173",
+              "wss://localhost:5173",
             ],
           },
         },
