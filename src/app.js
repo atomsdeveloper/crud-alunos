@@ -32,15 +32,21 @@ const corsOptions = {
 const helmetOptions = {
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: [
-        "'self'",
-        "http://localhost:5173",
-        "https://seu-dominio.vercel.app",
-      ],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:"],
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: [
+          "'self'",
+          "http://localhost:5173",
+          "https://seu-dominio.vercel.app",
+        ],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"],
+        fontSrc: ["'self'", "https:", "data:"],
+        formAction: ["'self'"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
     },
   },
 };
