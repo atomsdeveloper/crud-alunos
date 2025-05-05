@@ -4,7 +4,7 @@ const router = new Router();
 // Controller
 import tokenController from "../controllers/tokenController.js";
 
-router.get("/", tokenController.store);
+router.post("/", tokenController.store);
 
 export default router;
 
