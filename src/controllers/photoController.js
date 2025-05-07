@@ -1,6 +1,6 @@
 // Models
 import Photo from "../models/Photo";
-import Aluno from "../models/Aluno";
+import Students from "../models/Students";
 
 // Multer
 import multer from "multer";
@@ -35,7 +35,7 @@ class PhotoController {
         }
 
         // Check if the student_id exists in table "alunos"
-        const studentExists = await Aluno.findOne({
+        const studentExists = await Students.findOne({
           where: { id: student_id },
         });
 
