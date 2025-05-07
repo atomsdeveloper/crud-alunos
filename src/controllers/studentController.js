@@ -1,11 +1,11 @@
-import Aluno from "../models/Aluno";
+import Students from "../models/Students";
 import Photo from "../models/Photo";
 class StudentController {
   // List all students
   // This method handles the retrieval of all students
   async index(req, res) {
     try {
-      const students = await Aluno.findAll({
+      const students = await Students.findAll({
         // Order the students by ID in descending order
         // This means the most recently created students will be listed first
         order: [
@@ -28,7 +28,7 @@ class StudentController {
       if (!students) {
         return res.status(404).json({
           success: false,
-          message: "Nenhum aluno encontrado.",
+          message: "Nenhum Students encontrado.",
         });
       }
 
@@ -42,7 +42,7 @@ class StudentController {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao buscar alunos.",
+        message: "Erro ao buscar Students.",
         error: error.errors.map((err) => err.message),
       });
     }
@@ -62,7 +62,7 @@ class StudentController {
       }
 
       // Create a new student
-      const student = await Aluno.create({
+      const student = await Students.create({
         name,
         email,
         weight,
@@ -74,14 +74,14 @@ class StudentController {
       // Return the created student in the response
       return res.status(201).json({
         success: true,
-        message: "Aluno criado com sucesso.",
+        message: "Students criado com sucesso.",
         data: student,
       });
     } catch (error) {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao criar aluno.",
+        message: "Erro ao criar Students.",
         error: error.errors.map((err) => err.message),
       });
     }
@@ -93,7 +93,7 @@ class StudentController {
       const { id } = req.params;
 
       // Find the student by ID
-      const student = await Aluno.findByPk(id, {
+      const student = await Students.findByPk(id, {
         // Order the students by ID in descending order
         // This means the most recently created students will be listed first
         order: [
@@ -116,21 +116,21 @@ class StudentController {
       if (!student) {
         return res.status(404).json({
           success: false,
-          message: "Aluno não encontrado.",
+          message: "Students não encontrado.",
         });
       }
 
       // Return the found student in the response
       return res.json({
         success: true,
-        message: "Aluno encontrado com sucesso.",
+        message: "Students encontrado com sucesso.",
         data: student,
       });
     } catch (error) {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao buscar aluno.",
+        message: "Erro ao buscar Students.",
         error: error.errors.map((err) => err.message),
       });
     }
@@ -143,13 +143,13 @@ class StudentController {
       const { name, email, lastname, weight, height, birthdate } = req.body;
 
       // Find the student by ID
-      const student = await Aluno.findByPk(id);
+      const student = await Students.findByPk(id);
 
       // Check if the student was found
       if (!student) {
         return res.status(404).json({
           success: false,
-          message: "Aluno não encontrado.",
+          message: "Students não encontrado.",
         });
       }
 
@@ -166,14 +166,14 @@ class StudentController {
       // Return the updated student in the response
       return res.json({
         success: true,
-        message: "Aluno atualizado com sucesso.",
+        message: "Students atualizado com sucesso.",
         data: newStudent,
       });
     } catch (error) {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao atualizar aluno.",
+        message: "Erro ao atualizar Students.",
         error: error.errors.map((err) => err.message),
       });
     }
@@ -185,13 +185,13 @@ class StudentController {
       const { id } = req.params;
 
       // Find the student by ID
-      const student = await Aluno.findByPk(id);
+      const student = await Students.findByPk(id);
 
       // Check if the student was found
       if (!student) {
         return res.status(404).json({
           success: false,
-          message: "Aluno não encontrado.",
+          message: "Students não encontrado.",
         });
       }
 
@@ -201,13 +201,13 @@ class StudentController {
       // Return a success message in the response
       return res.json({
         success: true,
-        message: "Aluno deletado com sucesso.",
+        message: "Students deletado com sucesso.",
       });
     } catch (error) {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao deletar aluno.",
+        message: "Erro ao deletar Students.",
         error: error.errors.map((err) => err.message),
       });
     }

@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.INTEGER, // Integer type
         allowNull: true, // Not null
         references: {
-          model: "alunos", // Reference to the students table
+          model: "students", // Reference to the students table
           key: "id", // Reference key
         },
         onDelete: "CASCADE", // If a student is deleted, delete their photos

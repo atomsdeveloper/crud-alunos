@@ -13,8 +13,8 @@ router.get("/", UserController.index);
 // router.get("/:id", UserController.show);
 
 router.post("/", loginRequired, UserController.store);
-router.put("/", loginRequired, UserController.update);
-router.delete("/", loginRequired, UserController.delete);
+router.put("/:id", loginRequired, UserController.update);
+router.delete("/:id", loginRequired, UserController.delete);
 
 export default router;
 

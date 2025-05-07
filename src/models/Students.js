@@ -1,9 +1,9 @@
 import { Model, DataTypes } from "sequelize";
 
-// Model for the "alunos" table
-// This model represents the structure of the "alunos" table in the database
+// Model for the "Students" table
+// This model represents the structure of the "Students" table in the database
 // and provides methods to interact with it
-export default class Aluno extends Model {
+export default class Students extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -108,18 +108,18 @@ export default class Aluno extends Model {
       },
       {
         sequelize,
-        modelName: "Aluno",
-        tableName: "alunos",
+        modelName: "Student",
+        tableName: "students",
       }
     );
     return this;
   }
 
-  static associate(models) {
-    // Define a one-to-many relationship with the Photo model
-    // This means that a student can have many photos
-    this.hasMany(models.Photo, {
-      foreignKey: "student_id",
-    });
-  }
+  // static associate(models) {
+  //   // Define a one-to-many relationship with the Photo model
+  //   // This means that a student can have many photos
+  //   this.hasMany(models.Photo, {
+  //     foreignKey: "student_id",
+  //   });
+  // }
 }

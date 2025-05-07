@@ -3,8 +3,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // Create the "alunos" table
-    await queryInterface.createTable("alunos", {
+    // Create the "students" table
+    await queryInterface.createTable("students", {
       id: {
         type: Sequelize.INTEGER, // Integer type
         autoIncrement: true, // Auto-incrementing
@@ -48,8 +48,8 @@ module.exports = {
   },
   // Rollback the migration
   // This function will be called when you want to undo the migration
-  // It will drop the "alunos" table
+  // It will drop the "students" table
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("alunos");
+    await queryInterface.dropTable("students");
   },
 };
