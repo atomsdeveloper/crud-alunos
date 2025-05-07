@@ -49,10 +49,10 @@ class PhotoController {
         const isCloudinary = process.env.STORAGE_DRIVER === "cloudinary";
 
         // Get the filename and originalname from the request file
-        const { filename, originalname, path } = req.file;
+        const { originalname, path } = req.file;
 
         const photo = await Photo.create({
-          filename: isCloudinary ? filename : path,
+          filename: isCloudinary ? path : originalname`${new Date()}`,
           originalname,
           student_id,
         });
