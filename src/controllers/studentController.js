@@ -12,13 +12,14 @@ class StudentController {
           ["id", "DESC"],
           // Order the associated photos by ID in descending order
           // This means the most recently created photos will be listed first
-          [{ model: Photo }, "id", "DESC"],
+          [{ model: Photo, as: "photos" }, "id", "DESC"],
         ],
         // Include associated photos
         // This allows us to get the photos associated with each student
         include: [
           {
             model: Photo,
+            as: "photos",
             attributes: ["filename", "url"],
           },
         ],
@@ -28,7 +29,7 @@ class StudentController {
       if (!students) {
         return res.status(404).json({
           success: false,
-          message: "Nenhum Students encontrado.",
+          message: "Nenhum aluno encontrado.",
         });
       }
 
@@ -42,8 +43,8 @@ class StudentController {
       // Handle any errors that occur during the process
       return res.status(400).json({
         success: false,
-        message: "Erro ao buscar Students.",
-        error: error.errors.map((err) => err.message),
+        message: "Erro ao buscar alunos.",
+        error: error.message,
       });
     }
   }

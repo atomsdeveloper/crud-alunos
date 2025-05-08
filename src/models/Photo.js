@@ -55,12 +55,13 @@ export default class Photo extends Model {
   }
   // Define associations with other models
   // This method is used to define relationships between models
-  // static associate(models) {
-  //   // Define a one-to-many relationship with the Student model
-  //   // This means that a photo belongs to a student
-  //   // and a student can have many photos
-  //   this.belongsTo(models.Students, {
-  //     foreignKey: "student_id",
-  //   });
-  // }
+  static associate(models) {
+    // Define a one-to-many relationship with the Student model
+    // This means that a photo belongs to a student
+    // and a student can have many photos
+    this.belongsTo(models.Students, {
+      foreignKey: "student_id",
+      as: "students",
+    });
+  }
 }

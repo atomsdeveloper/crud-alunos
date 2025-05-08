@@ -108,18 +108,19 @@ export default class Students extends Model {
       },
       {
         sequelize,
-        modelName: "Student",
+        modelName: "Students",
         tableName: "students",
       }
     );
     return this;
   }
 
-  // static associate(models) {
-  //   // Define a one-to-many relationship with the Photo model
-  //   // This means that a student can have many photos
-  //   this.hasMany(models.Photo, {
-  //     foreignKey: "student_id",
-  //   });
-  // }
+  static associate(models) {
+    // Define a one-to-many relationship with the Photo model
+    // This means that a student can have many photos
+    this.hasMany(models.Photo, {
+      foreignKey: "student_id",
+      as: "photos",
+    });
+  }
 }
