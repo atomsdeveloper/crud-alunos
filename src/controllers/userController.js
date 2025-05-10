@@ -41,7 +41,7 @@ class UserController {
 
       return res.json({
         success: true,
-        message: "User criado com sucesso.",
+        message: "criado com sucesso.",
         data: {
           name: req.body.name,
           email: req.body.email,

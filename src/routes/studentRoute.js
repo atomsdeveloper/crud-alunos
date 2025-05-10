@@ -12,9 +12,9 @@ import StudentController from "../controllers/studentController.js";
 // List all students
 router.get("/", StudentController.index);
 router.get("/:id", StudentController.show);
-router.post("/", loginRequired, StudentController.store);
-router.put("/:id", loginRequired, StudentController.update);
-router.delete("/:id", loginRequired, StudentController.delete);
+router.post("/create", loginRequired, StudentController.store);
+router.put("/:id/edit", loginRequired, StudentController.update);
+router.delete("/:id/delete", loginRequired, StudentController.delete);
 
 export default router;
 

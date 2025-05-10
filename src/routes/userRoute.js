@@ -12,9 +12,9 @@ import UserController from "../controllers/userController.js";
 router.get("/", UserController.index);
 // router.get("/:id", UserController.show);
 
-router.post("/", loginRequired, UserController.store);
-router.put("/:id", loginRequired, UserController.update);
-router.delete("/:id", loginRequired, UserController.delete);
+router.post("/create", UserController.store);
+router.put("/:id/edit", loginRequired, UserController.update);
+router.delete("/:id/delete", loginRequired, UserController.delete);
 
 export default router;
 
