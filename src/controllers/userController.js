@@ -41,7 +41,7 @@ class UserController {
 
       return res.json({
         success: true,
-        message: "criado com sucesso.",
+        message: "Usuário criado com sucesso.",
         data: {
           name: req.body.name,
           email: req.body.email,
@@ -52,7 +52,7 @@ class UserController {
       return res.status(400).json({
         success: false,
         message: "Erro ao criar o usuário.",
-        error: error.errors.map((err) => err.message), // Extracting error messages from the Sequelize validation errors.
+        error: error.message,
       });
     }
   }
