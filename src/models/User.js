@@ -34,7 +34,7 @@ export default class User extends Model {
           allowNull: false, // Not null
           unique: {
             args: true, // Unique constraint
-            msg: "O email já está cadastrado", // Error message
+            msg: "Dados inválidos.", // Error message
           }, // Unique constraint
           defaultValue: "", // Default value is an empty string
           validate: {
