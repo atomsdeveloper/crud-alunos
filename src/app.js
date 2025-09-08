@@ -8,7 +8,7 @@ import { resolve } from "path";
 import express from "express";
 
 // Importing the database connection
-import "./database/index.js";
+import "./models/index.js";
 
 // Routes
 import homeRoute from "./routes/homeRoute.js";
