@@ -52,15 +52,15 @@ class StudentController {
   // This method handles the creation of a new student
   async store(req, res) {
     try {
-      const { name, lastname, email, weight, height, birthdate } = req.body;
-
       // Check if the required fields are present
-      if (!name || !email || !weight || !height || !birthdate || !lastname) {
+      if (!req.body) {
         return res.status(400).json({
           success: false,
           message: "Todos os campos são obrigatórios.",
         });
       }
+
+      const { name, lastname, email, weight, height, birthdate } = req.body;
 
       // Create a new student
       const student = await Students.create({
@@ -83,7 +83,7 @@ class StudentController {
       return res.status(400).json({
         success: false,
         message: "Erro ao criar Students.",
-        error: error.errors.map((err) => err.message),
+        error: error.message,
       });
     }
   }
