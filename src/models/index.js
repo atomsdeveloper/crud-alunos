@@ -1,8 +1,5 @@
 import Sequelize from "sequelize";
 
-// Database
-import config from "../config/database.js";
-
 // Models
 import Students from "./Students.js";
 import Photo from "./Photo.js";
@@ -11,7 +8,20 @@ import User from "./User.js";
 // Model Associations
 import associateModels from "./associations.js";
 
-const sequelize = new Sequelize(config);
+import { Sequelize } from "sequelize";
+
+const url = process.env.DATABASE_URL;
+
+const sequelize = new Sequelize(url, {
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  timezone: "America/Sao_Paulo",
+});
 
 Students.init(sequelize);
 Photo.init(sequelize);
