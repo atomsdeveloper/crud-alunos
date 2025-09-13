@@ -20,7 +20,7 @@ import photoRoute from "./routes/photoRoute.js";
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://localhost:5173",
+    "https://crud-alunos-production-5e4f.up.railway.app/",
     "ws://localhost:5173",
     "wss://localhost:5173",
   ],
