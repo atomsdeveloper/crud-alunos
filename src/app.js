@@ -20,7 +20,7 @@ import photoRoute from "./routes/photoRoute.js";
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://crud-alunos-production-5e4f.up.railway.app/",
+    "react-alunos.vercel.app",
     "ws://localhost:5173",
     "wss://localhost:5173",
   ],
@@ -48,7 +48,6 @@ class App {
       next();
     });
     this.app.use(cors(corsOptions));
-    // this.app.use(helmet(helmetOptions));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.static(resolve(__dirname, "uploads")));
