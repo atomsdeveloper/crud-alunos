@@ -14,12 +14,6 @@ const url = process.env.DATABASE_URL;
 
 const sequelize = new Sequelize(url, {
   dialect: "postgres",
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
   timezone: "America/Sao_Paulo",
 });
 
