@@ -27,8 +27,8 @@ class StudentController {
 
       // Check if the students were found
       if (!students) {
-        return res.status(404).json({
-          success: false,
+        return res.status(200).json({
+          success: true,
           message: "Nenhum aluno encontrado.",
         });
       }
