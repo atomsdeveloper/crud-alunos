@@ -1,13 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+const url = process.env.DATABESE_URL;
+
 const config = {
-  dialect: process.env.DATABASE_DIALECT,
-  database: process.env.DATABASE_NAME,
-  host: process.env.DATABASE_HOST,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  port: process.env.DATABASE_PORT,
+  url,
   define: {
     timestamps: true,
     underscored: true,

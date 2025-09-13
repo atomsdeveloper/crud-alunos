@@ -28,25 +28,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
-const helmetOptions = {
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: [
-        "'self'",
-        "http://localhost:5173",
-        "https://seu-dominio.vercel.app",
-      ],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:"],
-      fontSrc: ["'self'", "https:", "data:"],
-      formAction: ["'self'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  },
-};
+
 class App {
   constructor() {
     this.app = express();
