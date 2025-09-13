@@ -15,6 +15,10 @@ module.exports = {
     updatedAt: "updated_at", // Rename updatedAt to updated_at
   },
   dialectOptions: {
+    ssl: {
+      require: true, // força uso de SSL
+      rejectUnauthorized: false, // equivalente a sslmode=require
+    },
     timezone: "America/Sao_Paulo", // Set the timezone to Brazil
   },
   timezone: "America/Sao_Paulo", // Set the timezone to Brazil
