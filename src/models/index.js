@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 
 // Database
-import configDatabase from "../config/database.js";
+import config from "../config/database.js";
 
 // Models
 import Students from "./Students.js";
@@ -11,7 +11,7 @@ import User from "./User.js";
 // Model Associations
 import associateModels from "./associations.js";
 
-const sequelize = new Sequelize(configDatabase);
+const sequelize = new Sequelize(config);
 
 Students.init(sequelize);
 Photo.init(sequelize);
