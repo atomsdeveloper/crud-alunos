@@ -61,10 +61,7 @@ class App {
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
       );
-      res.header(
-        "Content-Security-Policy",
-        "default-src 'self'; connect-src 'self' http://localhost:5173 https://crud-alunos-production-5e4f.up.railway.app/; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https: data:; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
-      );
+      res.header("Content-Security-Policy");
 
       next();
     });
