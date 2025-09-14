@@ -18,12 +18,7 @@ import studentRoute from "./routes/studentRoute.js";
 import photoRoute from "./routes/photoRoute.js";
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "react-alunos.vercel.app",
-    "ws://localhost:5173",
-    "wss://localhost:5173",
-  ],
+  origin: ["http://localhost:5173", "react-alunos.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
