@@ -54,7 +54,7 @@ var _urlConfig = require('../config/urlConfig'); var _urlConfig2 = _interopRequi
           type: _sequelize.DataTypes.DATE,
           allowNull: false,
           defaultValue: _sequelize.DataTypes.NOW,
-          field: "update_at",
+          field: "updated_at",
         },
       },
       {

@@ -115,7 +115,7 @@
           type: _sequelize.DataTypes.DATE,
           allowNull: false,
           defaultValue: _sequelize.DataTypes.NOW,
-          field: "update_at",
+          field: "updated_at",
         },
       },
       {
