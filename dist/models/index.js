@@ -12,7 +12,16 @@ var _associationsjs = require('./associations.js'); var _associationsjs2 = _inte
 var _sequelize = require('sequelize');
 var _databasejs = require('../config/database.js');
 
-const sequelize = new (0, _sequelize.Sequelize)(_databasejs.configDb);
+const sequelize = new (0, _sequelize.Sequelize)(_databasejs.url, {
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  timezone: "America/Sao_Paulo",
+});
 
 _Studentsjs2.default.init(sequelize);
 _Photojs2.default.init(sequelize);
