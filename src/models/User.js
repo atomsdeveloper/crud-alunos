@@ -115,12 +115,22 @@ export default class User extends Model {
             },
           },
         },
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "User",
         tableName: "users",
-        timestamps: false,
+        timestamps: true,
       }
     );
     // Adding hooks to the model

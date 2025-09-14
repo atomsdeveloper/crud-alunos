@@ -44,12 +44,22 @@ export default class Photo extends Model {
             return isCloudinary ? filename : `${urlConfig.baseURL}/${filename}`;
           },
         },
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "Photo",
         tableName: "photos",
-        // timestamps: false,
+        timestamps: true,
       }
     );
     return this;

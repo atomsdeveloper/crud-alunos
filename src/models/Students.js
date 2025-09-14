@@ -105,12 +105,22 @@ export default class Students extends Model {
             },
           },
         },
+        createdAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          allowNull: false,
+          defaultValue: DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "Students",
         tableName: "students",
-        timestamps: false,
+        timestamps: true,
       }
     );
     return this;
