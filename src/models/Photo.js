@@ -54,7 +54,7 @@ export default class Photo extends Model {
           type: DataTypes.DATE,
           allowNull: false,
           defaultValue: DataTypes.NOW,
-          field: "update_at",
+          field: "updated_at",
         },
       },
       {

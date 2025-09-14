@@ -115,7 +115,7 @@ export default class Students extends Model {
           type: DataTypes.DATE,
           allowNull: false,
           defaultValue: DataTypes.NOW,
-          field: "update_at",
+          field: "updated_at",
         },
       },
       {
