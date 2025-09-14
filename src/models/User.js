@@ -120,6 +120,7 @@ export default class User extends Model {
         sequelize,
         modelName: "User",
         tableName: "users",
+        timestamps: false,
       }
     );
     // Adding hooks to the model
