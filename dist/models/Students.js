@@ -110,6 +110,7 @@
         sequelize,
         modelName: "Students",
         tableName: "students",
+        timestamps: false,
       }
     );
     return this;
