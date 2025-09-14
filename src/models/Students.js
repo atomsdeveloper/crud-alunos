@@ -110,6 +110,7 @@ export default class Students extends Model {
         sequelize,
         modelName: "Students",
         tableName: "students",
+        timestamps: false,
       }
     );
     return this;
