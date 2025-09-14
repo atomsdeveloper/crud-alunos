@@ -9,7 +9,6 @@ import User from "./User.js";
 import associateModels from "./associations.js";
 
 import { Sequelize } from "sequelize";
-import { defaultOptions } from "mariadb";
 
 const url = process.env.DATABASE_URL;
 
