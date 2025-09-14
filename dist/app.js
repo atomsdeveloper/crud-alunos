@@ -18,7 +18,7 @@ var _studentRoutejs = require('./routes/studentRoute.js'); var _studentRoutejs2 
 var _photoRoutejs = require('./routes/photoRoute.js'); var _photoRoutejs2 = _interopRequireDefault(_photoRoutejs);
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "react-alunos.vercel.app"],
+  origin: ["http://localhost:5173", "https://react-alunos.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
