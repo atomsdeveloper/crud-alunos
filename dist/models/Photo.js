@@ -49,6 +49,7 @@ var _urlConfig = require('../config/urlConfig'); var _urlConfig2 = _interopRequi
         sequelize,
         modelName: "Photo",
         tableName: "photos",
+        timestamps: false,
       }
     );
     return this;

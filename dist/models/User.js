@@ -120,6 +120,7 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
         sequelize,
         modelName: "User",
         tableName: "users",
+        timestamps: false,
       }
     );
     // Adding hooks to the model
