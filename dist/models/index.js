@@ -1,5 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
-_dotenv2.default.config();
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
 
 // Models
 var _Studentsjs = require('./Students.js'); var _Studentsjs2 = _interopRequireDefault(_Studentsjs);
@@ -9,10 +8,11 @@ var _Userjs = require('./User.js'); var _Userjs2 = _interopRequireDefault(_Userj
 // Model Associations
 var _associationsjs = require('./associations.js'); var _associationsjs2 = _interopRequireDefault(_associationsjs);
 
-var _sequelize = require('sequelize');
-var _databasejs = require('../config/database.js');
 
-const sequelize = new (0, _sequelize.Sequelize)(_databasejs.url, {
+
+const url = process.env.DATABASE_URL;
+
+const sequelize = new (0, _sequelize.Sequelize)(url, {
   dialect: "postgres",
   dialectOptions: {
     ssl: {
