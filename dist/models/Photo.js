@@ -44,12 +44,22 @@ var _urlConfig = require('../config/urlConfig'); var _urlConfig2 = _interopRequi
             return isCloudinary ? filename : `${_urlConfig2.default.baseURL}/${filename}`;
           },
         },
+        createdAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
+        updatedAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "Photo",
         tableName: "photos",
-        // timestamps: false,
+        timestamps: true,
       }
     );
     return this;

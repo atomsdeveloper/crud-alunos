@@ -105,12 +105,22 @@
             },
           },
         },
+        createdAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
+        updatedAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "Students",
         tableName: "students",
-        timestamps: false,
+        timestamps: true,
       }
     );
     return this;

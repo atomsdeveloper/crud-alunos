@@ -115,12 +115,22 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
             },
           },
         },
+        createdAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
+        updatedAt: {
+          type: _sequelize.DataTypes.DATE,
+          allowNull: false,
+          defaultValue: _sequelize.DataTypes.NOW,
+        },
       },
       {
         sequelize,
         modelName: "User",
         tableName: "users",
-        timestamps: false,
+        timestamps: true,
       }
     );
     // Adding hooks to the model
