@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+import Sequelize from "sequelize";
 
 // Models
 import Students from "./Students.js";
@@ -10,7 +9,8 @@ import User from "./User.js";
 import associateModels from "./associations.js";
 
 import { Sequelize } from "sequelize";
-import { url } from "../config/database.js";
+
+const url = process.env.DATABASE_URL;
 
 const sequelize = new Sequelize(url, {
   dialect: "postgres",
