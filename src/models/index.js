@@ -9,12 +9,19 @@ import User from "./User.js";
 import associateModels from "./associations.js";
 
 import { Sequelize } from "sequelize";
+import { defaultOptions } from "mariadb";
 
 const url = process.env.DATABASE_URL;
 
 const sequelize = new Sequelize(url, {
   dialect: "postgres",
   timezone: "America/Sao_Paulo",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
 
 Students.init(sequelize);
