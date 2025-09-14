@@ -52,7 +52,6 @@ class TokenController {
         },
       });
     } catch (error) {
-      console.log(error);
       return res
         .status(500)
         .json({ error: error.errors.map((err) => err.message) });

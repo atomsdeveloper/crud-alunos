@@ -4,7 +4,6 @@ var _Students = require('../models/Students'); var _Students2 = _interopRequireD
 
 class PhotoController {
   async store(req, res) {
-    console.log(req.file);
     if (!req.file) {
       return res
         .status(400)

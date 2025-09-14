@@ -3,13 +3,12 @@
 _dotenv2.default.config();
 
 var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
-var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
 
 var _path = require('path');
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
 
 // Importing the database connection
-require('./database/index.js');
+require('./models/index.js');
 
 // Routes
 var _homeRoutejs = require('./routes/homeRoute.js'); var _homeRoutejs2 = _interopRequireDefault(_homeRoutejs);
@@ -19,35 +18,12 @@ var _studentRoutejs = require('./routes/studentRoute.js'); var _studentRoutejs2 
 var _photoRoutejs = require('./routes/photoRoute.js'); var _photoRoutejs2 = _interopRequireDefault(_photoRoutejs);
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://localhost:5173",
-    "ws://localhost:5173",
-    "wss://localhost:5173",
-  ],
+  origin: ["http://localhost:5173", "react-alunos.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
-const helmetOptions = {
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: [
-        "'self'",
-        "http://localhost:5173",
-        "https://seu-dominio.vercel.app",
-      ],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:"],
-      fontSrc: ["'self'", "https:", "data:"],
-      formAction: ["'self'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  },
-};
+
 class App {
   constructor() {
     this.app = _express2.default.call(void 0, );
@@ -62,15 +38,11 @@ class App {
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
       );
-      res.header(
-        "Content-Security-Policy",
-        "default-src 'self'; connect-src 'self' http://localhost:5173 https://seu-dominio.vercel.app; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' https: data:; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
-      );
+      res.header("Content-Security-Policy");
 
       next();
     });
     this.app.use(_cors2.default.call(void 0, corsOptions));
-    // this.app.use(helmet(helmetOptions));
     this.app.use(_express2.default.json());
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.static(_path.resolve.call(void 0, __dirname, "uploads")));
