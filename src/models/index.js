@@ -10,9 +10,18 @@ import User from "./User.js";
 import associateModels from "./associations.js";
 
 import { Sequelize } from "sequelize";
-import { configDb } from "../config/database.js";
+import { url } from "../config/database.js";
 
-const sequelize = new Sequelize(configDb);
+const sequelize = new Sequelize(url, {
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  timezone: "America/Sao_Paulo",
+});
 
 Students.init(sequelize);
 Photo.init(sequelize);
