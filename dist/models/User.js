@@ -119,11 +119,13 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
           type: _sequelize.DataTypes.DATE,
           allowNull: false,
           defaultValue: _sequelize.DataTypes.NOW,
+          field: "created_at",
         },
         updatedAt: {
           type: _sequelize.DataTypes.DATE,
           allowNull: false,
           defaultValue: _sequelize.DataTypes.NOW,
+          field: "update_at",
         },
       },
       {
